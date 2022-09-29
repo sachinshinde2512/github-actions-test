@@ -7,7 +7,7 @@ jobs:
        runs-on: ubuntu-latest
        steps:
          - name: Echo Commands
-           run: echo "Hello World! This was my first bash command using GitHub Actions"
+           run: eccho "Hello World! This was my first bash command using GitHub Actions"
          - name: Multiline String
            run: |
                node -v

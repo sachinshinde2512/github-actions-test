@@ -14,6 +14,7 @@ jobs:
                npm -v
                python --version
                date
+               uptime
          - name: Python Commands
            run: |
                import platform

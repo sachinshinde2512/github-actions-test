@@ -6,15 +6,6 @@ jobs:
     run-github-actions:
       runs-on: ubuntu-latest
       steps: 
-        - name: List Files Before CheckOut 
-          id: list1
-          run: |
-            pwd
-            ls -a
-            echo $GITHUB_REPOSITORY
-            echo $GITHUB_SHA
-            echo $GITHUB_WORKSPACE
-            echo "${{ github.token }}"
         - name: CheckOut
           id: checkout
           uses: actions/checkout@v3
@@ -27,11 +18,14 @@ jobs:
             echo $GITHUB_SHA
             echo $GITHUB_WORKSPACE
             echo "${{ github.token }}"
-        - name: JavaScript Actions
-          id: greet
-          #uses: actions/hello-world-javascript-action@eb62a644ef35d9335d22bb625da7ce94314f3ae4
-          uses: sachinshinde2512/hello-world-javascript-action@v1.1
-          with: 
-            who-to-greet: 'Sachin-Shivaansh-Burgundaa'
-        - name: Log Greeting Time
-          run: echo "${{steps.greet.outputs.time}}"
+            
+        - name: Download Artifacts
+          id: downloadartifact    
+          uses: actions/download-artifact@v3
+          with:
+            name: my-artifact
+            path: drop
+    
+        - name: Display structure of downloaded files
+          run: ls -lrth
+          working-directory: drop

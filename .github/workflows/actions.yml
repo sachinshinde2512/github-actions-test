@@ -8,8 +8,9 @@ jobs:
       steps: 
         - name: JavaScript Actions
           id: greet
-          uses: actions/hello-world-javascript-action@eb62a644ef35d9335d22bb625da7ce94314f3ae4
+          #uses: actions/hello-world-javascript-action@eb62a644ef35d9335d22bb625da7ce94314f3ae4
+          uses: sachinshinde2512/hello-world-javascript-action@v1.1
           with: 
-            who-to-greet: 'Burgundaa'
+            who-to-greet: 'Sachin-Shivaansh'
         - name: Log Greeting Time
           run: echo "${{steps.greet.outputs.time}}"

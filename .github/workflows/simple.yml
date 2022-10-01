@@ -18,6 +18,14 @@ jobs:
          - name: Python Commands
            run: |
                import platform
+               import os
                print(platform.processor())
-               echo "$SHELL"
            shell: python
+    run-windows-commands:
+        runs-on: windows-latest
+        steps: 
+          - name: Directory PowerShell Commands
+            run: Get-Location
+          - name: Directory bash
+            run: pwd
+            shell: bash

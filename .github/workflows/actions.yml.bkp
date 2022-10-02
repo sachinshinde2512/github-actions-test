@@ -19,13 +19,3 @@ jobs:
             echo $GITHUB_WORKSPACE
             echo "${{ github.token }}"
             
-        - name: Download Artifacts
-          id: downloadartifact    
-          uses: actions/download-artifact@v3
-          with:
-            name: my-artifact
-            path: drop
-    
-        - name: Display structure of downloaded files
-          run: ls -lrth
-          working-directory: drop

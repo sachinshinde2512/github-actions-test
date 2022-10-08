@@ -1,0 +1,25 @@
+name: Print Environment Variables - workflow
+
+on: [push]
+
+env:
+  WF_ENV: Available to All Jobs in WorkFlow
+
+jobs:
+  log-env:
+  runs-on: ubuntu-latest
+  env:
+    JOB_ENV: Available to All steps in this Job
+  steps:
+    - name: Step 1
+      env:
+        STEP_ENV: Available in this step only
+      run: |
+        echo "WF_ENV: ${WF_ENV}"
+        echo "JOB_ENV: ${JOB_ENV}"
+        echo "STEP_ENV: ${STEP_ENV}"
+    - name: Step 2
+      run: |
+        echo "WF_ENV: ${WF_ENV}"
+        echo "JOB_ENV: ${JOB_ENV}"
+        echo "STEP_ENV: ${STEP_ENV}"

@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: Simple JS Actions
         id: greet
-        uses: actions/hello-world-javascript-actions@main
+        uses: actions/hello-world-javascript-action@main
         with: 
           who-to-greet: "John"
       - name: Capture TimeStamp of greet

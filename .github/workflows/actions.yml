@@ -6,11 +6,19 @@ jobs:
   run-github-actions:
     runs-on: ubuntu-latest
     steps:
-      - name: List Files
-        id: List
+      - name: List Files Before Checkout
+        id: List-Pre
         run: |
           pwd
-          ls -l
+          ls -la
+      - name: Checkout-Steps
+        id: Checkout
+        uses: actions/checkout@v3
+      - name: List Files After Checkout
+        id: List-Post
+        run: |
+          pwd
+          ls -la
       - name: Simple JS Actions
         id: greet
         uses: actions/hello-world-javascript-action@main

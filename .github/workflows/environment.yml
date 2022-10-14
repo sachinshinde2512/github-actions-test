@@ -50,4 +50,5 @@ jobs:
           echo "RUNNER_NAME: ${RUNNER_NAME}"
           echo "RUNNER_OS: ${RUNNER_OS}"
           echo "WF_ENV: ${WF_ENV}"
+          echo "End Here"
           

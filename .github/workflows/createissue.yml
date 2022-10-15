@@ -8,6 +8,29 @@ jobs:
     permissions:
       issues: write 
     steps:
+      - name: Create a RANDOM FILE
+        run: |
+          echo "Before pushing Random Number File"
+          pwd
+          ls -a
+          echo "Random File Changes and git actions"
+          git init
+          git remote add origin "https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
+          git config --global user.email "mybot@bot.com"
+          git config --global user.name "mybot" 
+          git fetch 
+          git checkout develop
+          git branch --set-upstream-to=origin/develop
+          git pull
+          ls -a 
+          echo $RANDOM > randomfile.log
+          ls -a
+          git add .
+          git commit -m "Pushing random file to github"
+          git push
+          echo "After pushing Random Number File"
+          pwd
+          ls -a
       - name: Create issue using REST API
         run: |
           echo "github.repository: ${{ github.repository }}"

@@ -17,6 +17,7 @@ jobs:
           echo "GITHUB_ACTOR: ${GITHUB_ACTOR}"
           echo "GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}"
           echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}"
+          git config --global init.defaultBranch origin/develop
           git init
           git remote add origin "https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
           echo "Printing the repo url as is $$$$$$$$$"

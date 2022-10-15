@@ -1,0 +1,16 @@
+name: container-worflow
+
+on: [push]
+
+jobs:
+  node-container-jobs:
+    runs-on: ubuntu-latest
+    container:
+      image: node:alpine3.16
+    steps:
+      - name: Print Node Version
+        run: |
+          node -v
+          cat /etc/os-release
+        
+     

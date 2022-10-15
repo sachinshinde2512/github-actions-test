@@ -16,8 +16,8 @@ jobs:
           echo "Random File Changes and git actions"
           git init
           git remote add origin "https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
-          git config --global user.email "mybot@bot.com"
-          git config --global user.name "mybot" 
+          git config --global user.email "sachin.shinde2512@gmail.com"
+          git config --global user.name "sachinshinde2512" 
           git fetch 
           git checkout develop
           git branch --set-upstream-to=origin/develop

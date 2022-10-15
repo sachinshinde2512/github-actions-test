@@ -22,7 +22,7 @@ jobs:
           git config --global user.email "sachin.shinde2512@gmail.com"
           git config --global user.name "sachinshinde2512" 
           git fetch 
-          git checkout develop
+          git checkout origin/develop
           git branch --set-upstream-to=origin/develop
           git pull
           ls -a 
@@ -33,7 +33,7 @@ jobs:
           git add .
           git commit -m "Pushing random file to github"
           echo "Triggering GIT PUSH to pushRandom Number File"
-          git push
+          git push origin develop
           echo "After pushing Random Number File"
           pwd
           ls -a

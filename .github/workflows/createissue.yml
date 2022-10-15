@@ -14,6 +14,9 @@ jobs:
           pwd
           ls -a
           echo "Random File Changes and git actions"
+          echo "GITHUB_ACTOR: ${GITHUB_ACTOR}"
+          echo "GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}"
+          echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}"
           git init
           git remote add origin "https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
           git config --global user.email "sachin.shinde2512@gmail.com"
@@ -25,8 +28,11 @@ jobs:
           ls -a 
           echo $RANDOM > randomfile.log
           ls -a
+          echo "Reading Contents of randomfile.log"
+          cat randomfile.log
           git add .
           git commit -m "Pushing random file to github"
+          echo "Triggering GIT PUSH to pushRandom Number File"
           git push
           echo "After pushing Random Number File"
           pwd

@@ -1,0 +1,60 @@
+name: Create issue on commit
+
+on: [ push ]
+
+jobs:
+  create_issue:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write 
+    steps:
+      - name: Create a RANDOM FILE
+        run: |
+          echo "Before pushing Random Number File"
+          pwd
+          ls -a
+          echo "Random File Changes and git actions"
+          echo "GITHUB_ACTOR: ${GITHUB_ACTOR}"
+          echo "GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}"
+          echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}"
+          git config --global init.defaultBranch origin/develop
+          git init
+          git remote add origin "https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
+          echo "Printing the repo url as is $$$$$$$$$"
+          echo "https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
+          git config --global user.email "sachin.shinde2512@gmail.com"
+          git config --global user.name "sachinshinde2512" 
+          git fetch 
+          git checkout develop
+          git branch --set-upstream-to=develop
+          git pull
+          ls -a 
+          echo $RANDOM > randomfile.log
+          ls -a
+          echo "Reading Contents of randomfile.log"
+          cat randomfile.log
+          git add .
+          git commit -m "Pushing random file to github"
+          echo "Triggering GIT PUSH to pushRandom Number File"
+          git push origin develop
+          echo "After pushing Random Number File"
+          pwd
+          ls -a
+      - name: Create issue using REST API
+        run: |
+          echo "github.repository: ${{ github.repository }}"
+          echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}"
+          echo "GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}"
+          echo "GITHUB_SHA: ${GITHUB_SHA}"
+          echo "github.sha: ${{ github.sha }}"
+          echo "GITHUB_WORKFLOW: ${GITHUB_WORKFLOW}"
+          echo "github.workflow: ${{ github.workflow }}"
+          curl --request POST \
+          --url https://api.github.com/repos/${{ github.repository }}/issues \
+          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --header 'content-type: application/json' \
+          --data '{
+            "title": "Automated issue for commit: ${{ github.sha }}",
+            "body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. \n\n The commit hash was: _${{ github.sha }}_."
+            }' \
+          --fail
